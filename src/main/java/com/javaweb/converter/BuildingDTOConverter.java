@@ -27,14 +27,6 @@ public class BuildingDTOConverter {
 	
 	public BuildingDTO toBuildingDTO(BuildingEntity item) {
 		BuildingDTO buildingDTO = modelMapper.map(item, BuildingDTO.class);
-//		buildingDTO.setName(item.getName());
-//		buildingDTO.setManagerName(item.getManagerName());
-//		buildingDTO.setManagerPhoneNumber(item.getManagerPhoneNumber());
-//		buildingDTO.setFloorArea(item.getFloorArea());
-//		buildingDTO.setEmptyArea(item.getEmptyArea());
-//		buildingDTO.setRentPrice(item.getRentPrice());
-//		buildingDTO.setServiceFee(item.getServiceFee());
-//		buildingDTO.setBrokerageFee(item.getBrokerageFee());
 		DistrictEntity districtEntity = districtRepository.findNameByID(item.getDistrictId());
 		buildingDTO.setAddress(item.getStreet() + ", " + item.getWard() + ", " + districtEntity.getName());
 		List<RentAreaEntity> rentAreas = rentAreaRepository.getValueByBuildingId(item.getId());

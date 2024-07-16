@@ -29,11 +29,6 @@ public class BuildingRepositoryImpl implements BuildingRepositoty {
 			sql.append(" INNER JOIN buildingrenttype brt ON b.id = brt.buildingid ");
 			sql.append(" INNER JOIN renttype rt ON rt.id = brt.renttypeid ");
 		}
-//		String rentAreaFrom = (String) params.get("rentAreaFrom");
-//		String rentAreaTo = (String) params.get("rentAreaTo");
-//		if (StringUtil.checkString(rentAreaFrom) || StringUtil.checkString(rentAreaTo)) {
-//			sql.append(" INNER JOIN rentarea ra ON ra.buildingid = b.id ");
-//		}
 	}
 
 	public static void queryNormal(Map<String, Object> params, StringBuilder where) {
@@ -78,15 +73,7 @@ public class BuildingRepositoryImpl implements BuildingRepositoty {
 		if (StringUtil.checkString(rentPriceTo)) {
 			where.append(" AND b.rentprice <=" + rentPriceTo);
 		}
-//		java 7
-//		if (typeCode != null && typeCode.size() != 0) {
-//			List<String> codeList = new ArrayList<String>();
-//			for (String item : typeCode) {
-//				codeList.add("'" + item + "'");
-//			}
-//			where.append(" AND rt.code IN(" + String.join(",", codeList) + ") ");
-//		}
-//		java 8
+
 		if (typeCode != null && typeCode.size() != 0) {
 			where.append(" AND (");
 			String sql = typeCode.stream().map(it -> "rt.code LIKE '%" + it + "%' ")
