@@ -1,4 +1,4 @@
-package com.javaweb.repository.impl;
+package com.javaweb.repository.custom.impl;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import com.javaweb.repository.entity.BuildingEntity;
 
 @Repository
 @Primary
-public class BuildingRepositoryImpl implements BuildingRepositoty {
+public class BuildingRepositoryImpl {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@Override
+//	@Override
 	public List<BuildingEntity> findAll(BuildingSearchBuilder buildingSearchBuilder) {
 		// JPQL
 //		String sql = "FROM BuildingEntity b WHERE b.id = 1";

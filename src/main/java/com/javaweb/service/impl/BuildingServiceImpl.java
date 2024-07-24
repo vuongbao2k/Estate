@@ -36,12 +36,12 @@ public class BuildingServiceImpl implements BuildingService {
 	public List<BuildingDTO> findAll(Map<String,Object> params, List<String> typeCode) {
 		// TODO Auto-generated method stub
 		BuildingSearchBuilder buildingSearchBuilder = buildingSearchBuilderConverter.toBuildingSearchBuilder(params, typeCode);
-		List<BuildingEntity> buildingEntities = buildingRepositoty.findAll(buildingSearchBuilder);
+		BuildingEntity buildingEntities = buildingRepositoty.findOne(1L); //findById -> findOne
 		List<BuildingDTO> resultBuildingDTOs = new ArrayList<BuildingDTO>();
-		for (BuildingEntity item : buildingEntities) {
-			BuildingDTO buildingDTO = buildingDTOConverter.toBuildingDTO(item);
-			resultBuildingDTOs.add(buildingDTO);
-		}
+//		for (BuildingEntity item : buildingEntities) {
+//			BuildingDTO buildingDTO = buildingDTOConverter.toBuildingDTO(item);
+//			resultBuildingDTOs.add(buildingDTO);
+//		}
 		return resultBuildingDTOs;
 	}
 

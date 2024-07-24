@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaweb.model.BuildingDTO;
 import com.javaweb.model.BuildingRequestDTO;
+import com.javaweb.repository.BuildingRepositoty;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.repository.entity.DistrictEntity;
 import com.javaweb.service.BuildingService;
@@ -28,11 +29,22 @@ import com.javaweb.service.BuildingService;
 public class BuildingAPI {
 	@Autowired
 	private BuildingService buildingService;
+	
+	@Autowired
+	private BuildingRepositoty buildingRepositoty;
+	
 
 	@GetMapping(value = "/api/building/")
 	public List<BuildingDTO> getBuilding(@RequestParam Map<String,Object> params,
 										@RequestParam(name ="typeCode", required = false) List<String> typeCode) {
 		List<BuildingDTO> result = buildingService.findAll(params, typeCode);
+		return result;
+	}
+	
+	@GetMapping(value = "/api/building/{name}")
+	public BuildingDTO getBuildingById(@PathVariable String name) {
+		BuildingDTO result = new BuildingDTO();
+		List<BuildingEntity> buildingEntity = buildingRepositoty.findByNameContaining(name);
 		return result;
 	}
 	
@@ -74,10 +86,8 @@ public class BuildingAPI {
 //			
 //	}
 //
-	@DeleteMapping(value = "/api/building/{id}")
-	public void deleteBuilding2(@PathVariable Long id) {
-		BuildingEntity buildingEntity = entityManager.find(BuildingEntity.class, id);
-		entityManager.remove(buildingEntity);
-		System.out.print("very nice " + id);
+	@DeleteMapping(value = "/api/building/{ids}")
+	public void deleteBuilding2(@PathVariable Long[] ids) {
+		buildingRepositoty.deleteByIdIn(ids);
 	}
 }
