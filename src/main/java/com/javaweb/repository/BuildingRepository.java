@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import com.javaweb.repository.entity.BuildingEntity;
 
-public interface BuildingRepositoty extends JpaRepository<BuildingEntity, Long>, BuildingRepositoryCustom {
+public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>, BuildingRepositoryCustom {
 	void deleteByIdIn(Long[] ids);
 	List<BuildingEntity> findByNameContaining(String s);
 }

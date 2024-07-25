@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaweb.model.BuildingDTO;
 import com.javaweb.model.BuildingRequestDTO;
-import com.javaweb.repository.BuildingRepositoty;
+import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.repository.entity.DistrictEntity;
 import com.javaweb.service.BuildingService;
@@ -31,7 +31,7 @@ public class BuildingAPI {
 	private BuildingService buildingService;
 	
 	@Autowired
-	private BuildingRepositoty buildingRepositoty;
+	private BuildingRepository buildingRepositoty;
 	
 
 	@GetMapping(value = "/api/building/")
